@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>MovieTasteFlicks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div id="bg_conatiner">
+        <div id="main_conatiner">
+            <div id="main_sub_conatiner">
+                
+                <div id="nav_bar">
+                    <h1><span id="movie_half">Movie</span>TasteFlicks</h1>
+                </div>
+                <div id="main_content">
+                    <p id="main_content_title">Let's Find Your<br>Taste Movie</p>
+                </div>
+                <div id="query_form_conatiner">
+                    <form action="/recommend" method="POST" id="query_form">
+                        <input type="text" name="movie_title" id="movie_title" placeholder="Movie Name" required>
+                        <button type="submit" id="submit_btn">Get Recommendations</button>
+                    </form>
+                </div>
+
+                <!--Div recommendation start here -->
+                <h2>Recommended Movies:</h2>
+                <div id="Recommendation_movie_conatiner">
+                <!-- Recommendation Results -->
+                {% if recommendations %}
+                <div class="recommendation_list">
+                    {% for movie in recommendations %}
+                        <div class="movie_container">
+                            <div class="poster_conatiner">
+                                <img src="{{ movie['poster_url'] }}" alt="{{ movie['title'] }}" class="movie_poster">
+                            </div>
+                            <br>
+                            <div class="deatils_conatiner">
+                                <p class="movie_name_title">{{ movie['title'] }}</p>
+                                <br>
+                                <div class="movie_sub_deatils">
+                                    <p>Release Date: {{ movie['release_date'] }}</p>
+                                    <p>Rating: {{ movie['vote_average'] }}</p>
+                                    <p>Popularity: {{ movie['popularity'] }}</p>
+                                    <br>
+                                    <p><strong>Overview:</strong></p>
+                                    <p class="overview">{{ movie['overview'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <!--Div recommendation ends here-->
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
