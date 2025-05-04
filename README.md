@@ -103,7 +103,5 @@ MIT License – feel free to use, share, or improve!
 
 ### 🙌 Made with love by [@arshc0der](https://github.com/arshc0der)
 
-```
-
 ---
 
